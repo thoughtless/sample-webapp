@@ -1,0 +1,10 @@
+[template]
+keys = [
+  "/services/web"
+]
+owner = "root"
+mode = "0644"
+src = "web.conf.tmpl"
+dest = "/etc/nginx/conf.d/web.conf"
+check_cmd  = "/usr/sbin/nginx -t"
+reload_cmd = "/usr/sbin/nginx -s reload"
