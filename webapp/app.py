@@ -2,11 +2,11 @@ import os, socket, redis, etcd
 from flask import Flask
 
 app = Flask(__name__)
+client = etcd.Client(host=os.environ.get('ETCD_HOST', '10.1.42.1'))
 
 @app.route("/")
 def hello():
     try:
-        client = etcd.Client(host=os.environ.get('ETCD_HOST', '10.1.42.1'))
         key = str(client.read('/app/services/redis')._children[0]['value'])
         redis_url = 'redis://{0}/0'.format(key)
         count = redis.StrictRedis.from_url(redis_url).incr("counter")
