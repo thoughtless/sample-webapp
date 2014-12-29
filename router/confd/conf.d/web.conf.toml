@@ -1,6 +1,6 @@
 [template]
 keys = [
-  "/services/web"
+  "/app/services/webapp"
 ]
 owner = "root"
 mode = "0644"
