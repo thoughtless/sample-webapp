@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+for num in 101 102 103; do
+  docker --host tcp://172.17.8.${num}:2375 rm -f $(docker --host tcp://172.17.8.${num}:2375 ps -a -q)
+done
