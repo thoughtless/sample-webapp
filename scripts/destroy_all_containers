@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+docker --host tcp://172.17.8.101:2375 run -e ETCDCTL_PEERS="10.1.42.1:4001" andyshinn/etcd etcdctl rmdir /app/services/redis
+docker --host tcp://172.17.8.101:2375 run -e ETCDCTL_PEERS="10.1.42.1:4001" andyshinn/etcd etcdctl rmdir /app/services/router
+docker --host tcp://172.17.8.101:2375 run -e ETCDCTL_PEERS="10.1.42.1:4001" andyshinn/etcd etcdctl rmdir /app/services/webapp
+docker --host tcp://172.17.8.101:2375 run -e ETCDCTL_PEERS="10.1.42.1:4001" andyshinn/etcd etcdctl rmdir /app/services
+docker --host tcp://172.17.8.101:2375 run -e ETCDCTL_PEERS="10.1.42.1:4001" andyshinn/etcd etcdctl rmdir /app
+
 for num in 101 102 103; do
   docker --host tcp://172.17.8.${num}:2375 rm -f $(docker --host tcp://172.17.8.${num}:2375 ps -a -q)
 done
