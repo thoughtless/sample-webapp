@@ -102,11 +102,13 @@ Now by browsing to http://172.17.8.101 and refreshing multiple times, we can see
 ```
 docker run -d -v /var/run/docker.sock:/tmp/docker.sock --net host --name registrator progrium/registrator -ttl 30 -ttl-refresh 20 etcd://10.1.42.1:4001/app/services
 
-docker run -e ETCDCTL_PEERS="10.1.42.1:4001" andyshinn/etcd etcdctl ls
+docker run andyshinn/etcd etcdctl ls
 
 docker run -d --name redis -p 6379 redis
 
-docker run -e ETCDCTL_PEERS="10.1.42.1:4001" andyshinn/etcd etcdctl ls --recursive /app
+docker run andyshinn/etcd etcdctl ls --recursive /app
 
 docker run -d --name webapp -p 5000 andyshinn/webapp
+
+docker run -d --name router -p 80:80 andyshinn/router
 ```
