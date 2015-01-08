@@ -3,6 +3,7 @@ FROM progrium/busybox
 ENV ETCD_VERSION v0.4.6
 ENV ETCD_DATA_DIR /etcddata
 ENV ETCD_NAME etcd
+ENV ETCDCTL_PEERS 10.1.42.1:4001
 
 RUN opkg-install wget \
   && wget --no-check-certificate -qO etcd.tar.gz https://github.com/coreos/etcd/releases/download/$ETCD_VERSION/etcd-$ETCD_VERSION-linux-amd64.tar.gz \
