@@ -13,9 +13,9 @@ def hello():
     except:
         count = "redis not found"
     return "\n".join([
-        '<div style="text-align: center; font-size: 128px;">Hello Docker Austin!</div>',
-        '<div style="text-align: center; font-size: 64px;">Redis Counter: {0}</div>'.format(count),
-        '<div style="text-align: center; font-size: 64px;">Container: {0}</div>\n'.format(socket.gethostname())
+        '<div style="text-align: center; font-size: 128px;">{0}</div>'.format(os.environ.get('WEBAPP_TITLE', 'Hello world... let's count!')),
+        '<div style="text-align: center; font-size: 64px;">Count: {0}</div>'.format(count),
+        '<div style="text-align: center; font-size: 64px;">Container ID: {0}</div>\n'.format(socket.gethostname())
     ])
 
 if __name__ == '__main__':
