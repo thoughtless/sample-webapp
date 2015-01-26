@@ -13,11 +13,11 @@ def hello():
     except:
         count = "redis not found"
     return "\n".join([
-        '<div style="text-align: center; font-size: 128px;">{0}</div>'.format(os.environ.get('WEBAPP_TITLE', 'Hello world... let's count!')),
+        '<div style="text-align: center; font-size: 128px;">{0}</div>'.format(os.environ.get('WEBAPP_TITLE', 'Hello world... let\'s count!')),
         '<div style="text-align: center; font-size: 64px;">Count: {0}</div>'.format(count),
         '<div style="text-align: center; font-size: 64px;">Container ID: {0}</div>\n'.format(socket.gethostname())
     ])
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port)

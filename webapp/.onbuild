@@ -1,0 +1,4 @@
+#!/bin/bash
+
+apt-get update -q
+apt-get install -q -y libffi-dev libssl-dev

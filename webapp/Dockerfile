@@ -1,4 +1,1 @@
-FROM python:2-onbuild
-
-EXPOSE 5000
-CMD ["python", "./app.py"]
+FROM gliderlabs/python-runtime:2.7

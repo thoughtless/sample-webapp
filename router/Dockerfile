@@ -1,24 +1,20 @@
-FROM ubuntu-debootstrap:trusty
+FROM gliderlabs/alpine:3.1
 
 ENV CONFD_VERSION 0.7.1
 ENV CONFD_INTERVAL 20
 ENV CONFD_NODE 10.1.42.1:4001
 ENV CONFD_BACKEND etcd
 
-RUN apt-get update -q \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -y -q wget nginx \
+RUN apk-install bash wget ca-certificates nginx \
   && wget -qO /usr/local/bin/confd https://github.com/kelseyhightower/confd/releases/download/v$CONFD_VERSION/confd-$CONFD_VERSION-linux-amd64 \
-  && apt-get remove -y wget \
-  && apt-get autoremove -y \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists
+  && apk del wget
 
-ADD confd /etc/confd
-ADD codep /usr/local/bin/codep
-ADD nginx.conf /etc/nginx/nginx.conf
+COPY confd /etc/confd
+COPY codep /usr/local/bin/codep
+COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN chmod +x /usr/local/bin/confd /usr/local/bin/codep
-RUN mkdir /etc/nginx/cache
+RUN chmod +x /usr/local/bin/confd /usr/local/bin/codep \
+  && mkdir /etc/nginx/cache
 
 EXPOSE 80
 
