@@ -1,5 +1,11 @@
 # Service Discovery Demo
 
+## Prerequisites
+
+```console
+$ vagrant plugin install vagrant-hostmanager
+```
+
 ## Service Registry
 
 Registering our services in the key / value store. We use `progrium/registrator` for this.
